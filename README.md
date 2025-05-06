@@ -47,3 +47,32 @@ fn main() {
     println!("Approximated values: {:?}", y_pred);
 }
 ```
+
+## Benchmark
+
+| Function   | ExpRoot + Log<br>▪ MSE | Polynomial deg 10<br>▪ MSE | Take‑away                                                                                                   |
+| ---------- | ---------------------- | -------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `Sin`      | **3.67 × 10⁻⁸**        | 1.34 × 10⁻¹¹               | Poly‑10 is a hair better on a pure sine; ExpRoot + Log is still < 10⁻⁷.                                     |
+| `ExpDecay` | **1.46 × 10⁻¹³**       | 1.14 × 10⁻¹⁵               | Both are essentially machine‑precision; ExpRoot + Log keeps up.                                             |
+| `Step`     | **1.52 × 10⁻²**        | 1.51 × 10⁻²                | Equal accuracy on a hard discontinuity, no Gibbs ringing.                                                   |
+| `Spike`    | **4.23 × 10⁻³**        | 2.55 × 10⁻³                | Narrow Gaussian spike: poly‑10 wins on raw MSE, but ExpRoot + Log is ~2× better than a 6‑knot cubic spline. |
+
+> ⏱ Average runtime on 2 000 points (Apple M1, `cargo run --example benchmark`):  
+> **ExpRoot + Log ≈ 47 ms**   |   **Poly deg 10 ≈ 32 ms**  
+> Two SVDs of comparable size; speed improves proportionally if you reduce basis size or enable rayon.
+
+### Why choose ExpRoot + Log?
+
+-   **Handles exponential tails** without the blow‑up polynomials suffer.
+-   **No Gibbs oscillations** on steps—log terms give smooth edge control.
+-   **Linear least‑squares** → works in WASM, embedded, no external BLAS.
+-   **Interpretable coefficients**: each term is a clear exponential or log “spring” shaping the curve.
+
+<summary>Reproduce the benchmark</summary>
+
+```bash
+git clone https://github.com/andysay1/exp_root_log
+cd exp_root_log
+cargo run --example benchmark
+
+```
