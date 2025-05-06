@@ -9,6 +9,15 @@ ExpRoot+Log is a fast and interpretable function approximation method based on a
 -   **Flexible**: Can handle smooth, discontinuous, and asymptotically decaying functions.
 -   **Linear regression**: Uses standard least-squares fitting for optimal performance.
 
+---
+
+## Learn more
+
+The full write‑up (motivation, math derivation, and numeric experiments) is available on dev.to:
+
+👉 **ExpRoot + Log: A Linear and Universal Basis for Function Approximation**  
+<https://dev.to/andysay/exprootlog-a-linear-and-universal-basis-for-function-approximation-2e9d>
+
 ## Usage
 
 ### Add the dependency to `Cargo.toml`:

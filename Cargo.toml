@@ -1,6 +1,6 @@
 [package]
 name = "exp_root_log"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["ANDREI LEONOV <a.leonov@paxintrade.com>"]
 description = "Fast and interpretable function approximation with exp-root-log basis"
