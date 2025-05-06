@@ -1,0 +1,17 @@
+# Компиляция и кэш
+/target
+**/*.rs.bk
+Cargo.lock
+
+# IDE и редакторы
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+.DS_Store
+
+# Системные файлы
+Thumbs.db
+ehthumbs.db
+Icon?

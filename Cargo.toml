@@ -1,0 +1,10 @@
+[package]
+name = "exp_root_log"
+version = "0.1.0"
+edition = "2021"
+authors = ["ANDREI LEONOV <a.leonov@paxintrade.com>"]
+description = "Fast and interpretable function approximation with exp-root-log basis"
+license = "MIT"
+
+[dependencies]
+nalgebra = { version = "0.32", features = ["serde-serialize"] }
